@@ -1,0 +1,29 @@
+.container {
+    display: inline-flex;
+    max-width: 70%;
+    flex-direction: column;
+    padding: 8px 12px;
+    border-radius: 12px;
+    word-wrap: break-word;
+    white-space: normal;
+    background-color: white;
+
+    .user {
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .content {
+        margin-bottom: 5px;
+    }
+
+    .time {
+        text-align: right;
+    }
+}
+
+.me {
+    align-self: flex-end;
+    background-color: royalblue;
+    color: white;
+}

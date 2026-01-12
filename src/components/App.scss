@@ -1,0 +1,48 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  height: 100vh;
+  background-color: lightblue;
+  
+  .messages {
+    height: calc(90% - 40px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 20px;
+    overflow: auto;
+    scrollbar-width: thin;
+  }
+  
+  .action-bar {
+    height: 10%;
+    padding-left: 20px;
+
+    .status {
+      height: 20px;
+    }
+    
+    .message-text {
+      height: 40%;
+      width: calc(94% - 20px);
+      margin-right: 2px;
+      border-radius: 15px;
+      border-width: 0;
+    }
+    
+    .send-button {
+      height: 50%;
+      width: calc(6% - 20px);
+      border-radius: 15px;
+      border-width: 0;
+      background-color: royalblue;
+      color: white;
+      cursor: pointer;
+    }
+  }
+}
+
