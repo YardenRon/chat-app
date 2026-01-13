@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import './App.scss';
 import MessageBubble from './MessageBubble';
 import Message from '../models/Message';
@@ -12,6 +12,8 @@ const App = ({ }: AppProps) => {
   const [currentMessage, setCurrentMessage] = useState<string>("");
   const [typingStatus, setTypingStatus] = useState<string>("");
 
+  const messagesRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     chat.onMessage(message => {
       setChatMessages(prevMessages => [...prevMessages, message]);
@@ -24,6 +26,11 @@ const App = ({ }: AppProps) => {
       setTypingStatus("");
     }, 2000);
   }, [typingStatus]);
+
+  useLayoutEffect(() => {
+    if (!messagesRef.current) return;
+    messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
+  }, [chatMessages]);
 
   let isSameAuthor = false;
 
@@ -40,7 +47,7 @@ const App = ({ }: AppProps) => {
 
   return (
     <div className="app">
-      <div className="messages">
+      <div className="messages" ref={messagesRef}>
         {chatMessages.map((message: Message, index: number) => {
           isSameAuthor = message.user === 'me' || (index > 0 && message.user === chatMessages[index - 1].user);
           return <MessageBubble key={index} {...message} showUser={!isSameAuthor} />
